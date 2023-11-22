@@ -159,7 +159,7 @@ class Glassdoor():
             print(e)
             return False
 
-    def get_inner_html(self, element):
+    def getInnerHtml(self, element):
         """
         Return the inner HTML of the given element.
         """
@@ -170,7 +170,7 @@ class Glassdoor():
             print(e)
             return None
         
-    def get_tag_name(self, element):
+    def getTagName(self, element):
         """
         Return the tag name of the given element.
         """
@@ -181,7 +181,7 @@ class Glassdoor():
             print(e)
             return None
 
-    def get_inner_elements(self, element, tag_name):
+    def getInnerElements(self, element, tag_name):
         """
         Return the inner elements of the given element.
         """
@@ -201,8 +201,8 @@ class Glassdoor():
             sign_in_button = None
 
             for button in all_buttons:
-                for span in self.get_inner_elements(button, "span"):
-                    if 'Sign In' in self.get_inner_html(span):
+                for span in self.getInnerElements(button, "span"):
+                    if 'Sign In' in self.getInnerHtml(span):
                         sign_in_button = button
             
             WebDriverWait(self.driver, self.delay+40).until(EC.element_to_be_clickable(sign_in_button))
