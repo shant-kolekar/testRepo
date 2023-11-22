@@ -246,6 +246,4 @@ class Glassdoor():
             print("Error logging in.")
             print(e)
             
-    
     # Start of Glassdoor interview questions methods
-    
