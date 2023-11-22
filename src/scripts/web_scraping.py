@@ -76,6 +76,12 @@ class Glassdoor():
         """
         self.driver.get(url)
 
+    def get_sleep(self, time):
+        """
+        Sleep for the given time.
+        """
+        time.sleep(time)
+    
     # Start of Glassdoor login methods             
     def glassdoor_login_url(self):
         """
@@ -198,7 +204,6 @@ class Glassdoor():
                 for span in self.get_inner_elements(button, "span"):
                     if 'Sign In' in self.get_inner_html(span):
                         sign_in_button = button
-                        break
             
             WebDriverWait(self.driver, self.delay+40).until(EC.element_to_be_clickable(sign_in_button))
 
@@ -226,20 +231,30 @@ class Glassdoor():
             # Go to the Glassdoor login page
             self.take_me_to(self.glassdoor_login_url())
 
+            self.get_sleep(5)
+
             # Enter the email into the email field
             self.enter_email()
+
+            self.get_sleep(5)
 
             # Click the "Continue with Email" button
             self.click_continue_with_email()
 
+            self.get_sleep(5)
+            
             # Enter the password into the password field
             self.enter_password()
+
+            self.get_sleep(5)   
 
             # Click the "Sign In" button
             self.click_sign_in()
 
             print("Successfully logged in.")
 
+            self.get_sleep(10)
+            
             return True
         
         except Exception as e:
