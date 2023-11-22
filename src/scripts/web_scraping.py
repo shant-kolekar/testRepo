@@ -76,11 +76,11 @@ class Glassdoor():
         """
         self.driver.get(url)
 
-    def get_sleep(self, time):
+    def get_sleep(self, sleep_time):
         """
         Sleep for the given time.
         """
-        time.sleep(time)
+        time.sleep(sleep_time)
     
     # Start of Glassdoor login methods             
     def glassdoor_login_url(self):
@@ -254,7 +254,7 @@ class Glassdoor():
             print("Successfully logged in.")
 
             self.get_sleep(10)
-            
+
             return True
         
         except Exception as e:
