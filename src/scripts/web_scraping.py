@@ -254,8 +254,6 @@ class Glassdoor():
             print("Successfully logged in.")
 
             self.get_sleep(10)
-
-            return True
         
         except Exception as e:
             print("Error logging in.")
