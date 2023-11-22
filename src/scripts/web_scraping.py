@@ -153,16 +153,55 @@ class Glassdoor():
             print(e)
             return False
 
+    def get_inner_html(self, element):
+        """
+        Return the inner HTML of the given element.
+        """
+        try:
+            return element.get_attribute("innerHTML")
+        except Exception as e:
+            print("Error getting inner HTML.")
+            print(e)
+            return None
+        
+    def get_tag_name(self, element):
+        """
+        Return the tag name of the given element.
+        """
+        try:
+            return element.tag_name
+        except Exception as e:
+            print("Error getting tag name.")
+            print(e)
+            return None
+
+    def get_inner_elements(self, element, tag_name):
+        """
+        Return the inner elements of the given element.
+        """
+        try:
+            return element.find_elements(By.TAG_NAME, tag_name)
+        except Exception as e:
+            print("Error getting inner elements.")
+            print(e)
+            return None
+
     def click_sign_in(self):
         """
         Click the "Sign In" button. Return True if successful, False otherwise.
         """
         try:
-                
-            # Find the "Sign In" button
-            sign_in_button = WebDriverWait(self.driver, self.delay).\
-                until(EC.element_to_be_clickable((By.CLASS_NAME,\
-                     "gd-ui-button mt-std w-100pct css-jbcabp e5tvpqr2")))
+            all_buttons = self.driver.find_elements(By.XPATH, "//button")
+            sign_in_button = None
+
+            for button in all_buttons:
+                for span in self.get_inner_elements(button, "span"):
+                    if 'Sign In' in self.get_inner_html(span):
+                        sign_in_button = button
+                        break
+            
+            WebDriverWait(self.driver, self.delay+40).until(EC.element_to_be_clickable(sign_in_button))
+
 
             # Click the "Sign In" button
             sign_in_button.click()
