@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from webdriver_manager.chrome import ChromeDriverManager
+
 
 class Glassdoor():
     """
@@ -29,7 +29,7 @@ class Glassdoor():
         """
 
         # Create a new instance of Chrome driver
-        self.driver = webdriver.Chrome(ChromeDriverManager().install())
+        self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.delay = 10
@@ -89,8 +89,9 @@ class Glassdoor():
         """
         try:                
             # Find the email field
-            email_field = WebDriverWait(self.driver, self.delay).\
-                until(By.CSS_SELECTOR, "input[id='inlineUserEmail']")
+            email_field = WebDriverWait(self.driver, self.delay).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR,\
+                                                "input[id='inlineUserEmail']")))
 
             # Enter the email into the email field
             email_field.send_keys(self.email)
@@ -134,9 +135,11 @@ class Glassdoor():
         Enter the password into the password field. Return True if successful, False otherwise.
         """
         try:                
-            # Find the password field
-            password_field = WebDriverWait(self.driver, self.delay).\
-                until(By.CSS_SELECTOR, "input[id='inlineUserPassword']")
+           # Find the password field
+            password_field = WebDriverWait(self.driver, self.delay).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, \
+                                                "input[id='inlineUserPassword']"))
+            )
 
             # Enter the password into the password field
             password_field.send_keys(self.password)
