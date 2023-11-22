@@ -38,19 +38,6 @@ class Glassdoor():
         self.email = credentials["email"]
         self.password = credentials["password"]
 
-    def __str__(self) -> str:
-        """
-        Return a string representation of the Glassdoor instance.
-        """
-        return f"Glassdoor(email={self.email}, password={self.password})"
-    
-    def __del__(self):
-        """
-        Close the current window when the Glassdoor instance is destroyed.
-        """
-        # Close the current window
-        self.driver.close()
-    
     # Start of Glassdoor helper methods
     def get_driver(self):
         """
