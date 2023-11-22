@@ -258,7 +258,7 @@ class Glassdoor():
         except Exception as e:
             print("Error logging in.")
             print(e)
-            return False
+            
     
     # Start of Glassdoor interview questions methods
     
