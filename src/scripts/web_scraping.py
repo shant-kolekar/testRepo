@@ -316,7 +316,7 @@ class Glassdoor():
             try:  # try to get the company name
                 company_txt = interview_question_div.find_element(by=By.CSS_SELECTOR,
                                                                         value="img.css-1yo1500.edupdmz0")
-                company_name = company_txt.get_attribut('alt').text
+                company_name = company_txt.get_attribute('alt')
 
             except NoSuchElementException as e:  # company name could not be found
                 print('could not extract company name')
