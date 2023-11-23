@@ -8,12 +8,13 @@ credentials = {
     "password": "Test@123"
 }
 
-url = "https://www.glassdoor.com/Interview/hr-interview-questions-SRCH_KO0,2_SDMC_IP2.htm"
+HR_url = "https://www.glassdoor.com/Interview/hr-interview-questions-SRCH_KO0,2_SDMC_IP2.htm"
+cust_support_url = "https://www.glassdoor.com/Interview/customer-support-interview-questions-SRCH_KO0,16.htm"
 
 if __name__ == "__main__":
         
     # Create a new instance of Glassdoor
-    gd = Glassdoor(credentials, url)
+    gd = Glassdoor(credentials, HR_url)
 
     # Login to Glassdoor
     gd.login()
