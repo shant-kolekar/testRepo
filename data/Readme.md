@@ -3,5 +3,3 @@
 
 * There are 9963 interview questions, for Customer Support role, scraped from Glassdoor.
 > Link to website: "https://www.glassdoor.com/Interview/customer-support-interview-questions-SRCH_KO0,16.htm"
-
-* There are 100
