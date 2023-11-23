@@ -250,12 +250,16 @@ class Glassdoor():
 
     # Start of Glassdoor interview questions helper methods
     def extract_job_role(self):
+        """
+        Extract the job role from the given URL.
+        """
         start_idx = self.url.find('Interview') + len('Interview') + 1
         end_idx = self.url.find('interview')
         job_role = self.url[start_idx:end_idx].strip('-').replace('-', '_')
         return job_role
 
     def add_opening_square_bracket(self, fileWriter):
+        # write the opening bracket of the JSON array
         fileWriter.write('[')
 
     def add_closing_square_bracket(self, fileWriter):
@@ -271,6 +275,10 @@ class Glassdoor():
 
     # Start of Glassdoor interview questions scraping methods
     def click_next_button(self):
+        """
+        Click the next button.
+        """
+
         # wait until the next button appears
         next_button = WebDriverWait(self.driver, self.delay).until \
             (EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[aria-label="Next"]')))
@@ -279,6 +287,9 @@ class Glassdoor():
         self.driver.execute_script("arguments[0].click();", next_button)
 
     def get_interview_questions_from_a_page(self, fileWriter):
+        """
+        Scrape all the interview questions from a page.
+        """
 
         interview_question_divs = self.driver.find_elements(by=By.CSS_SELECTOR,
                                                             value='[data-brandviews*="interviews-search-top-questions"]')
@@ -322,8 +333,7 @@ class Glassdoor():
 
     def get_interview_questions_from_all_pages(self, file_path='data/raw_data/'):
         """
-        This function takes to next page till available.
-
+        Scrape all the interview questions from all the pages.
         """
         job_role = self.extract_job_role()
 
