@@ -313,8 +313,6 @@ class Glassdoor():
             except NoSuchElementException as e:  # interview date could not be found
                 print('could not extract interview date')
 
-            print(job_title, interview_que, date)
-
             # write a new row for interview question
             row_data = {"date": date, "job_title": job_title,
                         "interview_question": interview_que}
@@ -345,7 +343,7 @@ class Glassdoor():
 
         print('Scraping information.....')
 
-        while page_cnt <= 1:  # keep going until there are no more pages
+        while True:  # keep going until there are no more pages
 
             print('page', page_cnt)  # print current page count
 
