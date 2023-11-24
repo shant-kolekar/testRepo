@@ -295,7 +295,7 @@ class Glassdoor():
                                                             value='[data-brandviews*="interviews-search-top-questions"]')
 
         for interview_question_div in interview_question_divs:
-            interview_que, date, job_title, = "NA", "NA", "NA"
+            interview_que, date, job_title, company_name = "NA", "NA", "NA", "NA"
 
             try:  # try to get the job title
                 job_title_txt = interview_question_div.find_element(by=By.CSS_SELECTOR,
@@ -313,6 +313,16 @@ class Glassdoor():
             except NoSuchElementException as e:  # interview question could not be found
                 print('could not extract interview question')
 
+            try:  # try to get the company name
+                company_txt = interview_question_div.find_element(by=By.CSS_SELECTOR,
+                                                                        value="img.css-1yo1500.edupdmz0")
+                company_name = company_txt.get_attribute('alt')
+
+            except NoSuchElementException as e:  # company name could not be found
+                print('could not extract company name')
+
+
+
             try:  # try to get the interview date
                 date_elements = interview_question_div.find_elements(by=By.CSS_SELECTOR,
                                                                      value='.css-pdd0hg.edupdmz5')
@@ -325,7 +335,9 @@ class Glassdoor():
                 print('could not extract interview date')
 
             # write a new row for interview question
-            row_data = {"date": date, "job_title": job_title,
+            row_data = {"date": date,
+                        "company_name": company_name,
+                        "job_title": job_title,
                         "interview_question": interview_que}
 
             json.dump(row_data, fileWriter, indent=1)

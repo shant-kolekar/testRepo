@@ -43,3 +43,9 @@ python main.py
 * Navigate to the specified URL.
 * Scrape the interview questions.
 * Close the browser window upon completion
+
+## Data Location
+
+The extracted data from the scraping process can be found in the following directory:
+
+- `data/raw_data`: This directory contains the raw data files resulting from the scraping. It is structured to facilitate easy access and manipulation for further analysis or processing.
